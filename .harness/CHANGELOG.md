@@ -19,7 +19,7 @@ Data: 2026-10-16
 Prompt: Verificar a construção completa e reforçar evidências para a premiação.
 Resultado: Clone temporário percorreu J1, transição, referências docentes, recuperação, funcionalidade, regressão e master; identidade e skill preservadas. Aceitação confere os cinco campos de checkout e execução do CLI em JSON; checador de links ignora exemplos em código. Relatório separa testes reais de piloto pedagógico pendente.
 Arquivos: scripts/verificacoes.mjs, scripts/verificar-repo.mjs, ensino/CONQUISTAS.md, ensino/VALIDACAO.md, ensino/jornadas/03.md, README.md, .harness/CHANGELOG.md.
-Verificação: Validador docente inicial aprovado em clone isolado; reforços serão reexecutados na referência docente. Node.js v26.11.1. Sem execução real das quatro integrações VS Code e sem piloto de duração.
+Verificação: Validador docente completo e reforços aprovados em clone isolado: transição real, guia via origin/professor, sete prêmios e master, gates negativos e bloqueio de regressão/evidência alterada. npm test, npm run verificar e git diff --check aprovados nas branches pertinentes. Node.js v26.11.1. Sem execução real das quatro integrações VS Code e sem piloto de duração.
 Autor: OpenCode
 
 ======================
