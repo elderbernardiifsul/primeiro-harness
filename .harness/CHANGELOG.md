@@ -13,6 +13,14 @@ Resultado: Preservada base-original em Git independente; adicionados tutor socr�
 Arquivos: AGENTS.md, CLAUDE.md, .github/copilot-instructions.md, .gitignore, package.json, README.md, ensino/, scripts/, tests/, docs/INDEX.md, .harness/MEMORY.md, .harness/CHANGELOG.md; ../.gitignore.
 Verificação: npm test aprovado (memória, ordem, evidência, selos, retomada); npm run verificar aprovado (30 arquivos); git diff --check aprovado; fontes oficiais de carregamento consultadas. Compatibilidade das extensões e duração em sala exigem piloto real.
 Autor: OpenCode
+
+======================
+Data: 2026-10-16
+Prompt: Entregar projeto JavaScript com harness defeituoso, evidências reproduzíveis e recuperação socrática, seguido de funcionalidade e bug.
+Resultado: Main recebe carrinho CLI sem dependências, contrato vigente e histórico, três antipatterns semeados, reprodutores de consequências e jornadas 2–3. Suíte do produto falha intencionalmente no desconto; smoke passa. Frete ausente e defeito de subtotal monetário reservados à jornada final.
+Arquivos: projeto/, scripts/cenarios.mjs, ensino/jornadas/02.md, ensino/jornadas/03.md, .harness/CHANGELOG.md.
+Verificação: npm test da raiz e npm run verificar aprovados (44 arquivos); smoke do produto verde; suíte completa do produto falha intencionalmente (80/90 e 160/180); cenários confirmam resumo 80 versus contrato 90, rota antiga 95 versus 90 e subtotal 0.30000000000000004 versus 0.3; git diff --check aprovado. Fluxo corrigido será validado em cópia isolada na branch professor. Não houve piloto real nas extensões.
+Autor: OpenCode
 ======================
 Data: 2026-10-09
 Prompt: Aprimorar a skill de busca em docs para incorporar conhecimento da web, mantendo documentos sem alterações sem ordem explícita, exceto informações da stack obtidas em documentação oficial e validadas na prática, em diretório dedicado.

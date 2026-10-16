@@ -1,0 +1,12 @@
+{
+  "name": "carrinho-do-laboratorio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node src/cli.mjs",
+    "test": "node --test tests/smoke.test.mjs",
+    "test:completo": "node --test tests/*.test.mjs"
+  }
+}
