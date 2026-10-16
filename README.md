@@ -8,10 +8,10 @@ atividade**, além da preparação. JavaScript, Node.js 22+, sem `npm install`.
 1. Instale Git, Node.js 22+ e VS Code. Confira `git --version` e `node --version`.
 2. Configure e autentique um agente no VS Code. Use o melhor modelo disponível.
    Veja [como abrir seu agente](ensino/AMBIENTE.md).
-3. Substitua `URL_DO_REPOSITORIO` pelo endereço fornecido pelo professor:
+3. Clone a branch inicial:
 
    ```sh
-   git clone --branch jornada-1 URL_DO_REPOSITORIO primeiro-harness
+   git clone --branch jornada-1 https://github.com/elderbernardiifsul/primeiro-harness.git primeiro-harness
    ```
 
 4. Abra **a pasta clonada**, não sua pasta-pai: `code primeiro-harness`.
@@ -58,5 +58,5 @@ Para compartilhar o código, revise `git diff`; não versione `.aluno/`.
 
 A tag `base-original` preserva o laboratório anterior; `jornada-1` contém o
 passeio inicial; `main`, o software defeituoso; `professor`, o guia docente.
-Não há remoto configurado nesta entrega local. O professor deve publicar as
-três branches e a tag antes de distribuir o endereço aos alunos.
+Repositório público: https://github.com/elderbernardiifsul/primeiro-harness.
+As três branches e a tag estão disponíveis para clonagem.
