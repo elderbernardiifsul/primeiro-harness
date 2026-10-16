@@ -13,18 +13,18 @@ clone em `jornada-1`. Use o melhor modelo disponível. Repetição com modelo me
 
 ## Publicação pelo professor
 
-O repositório foi inicializado localmente e não tem remoto. Crie um repositório
-vazio no serviço escolhido e, após revisar os arquivos, configure seu endereço:
+O repositório público está em
+https://github.com/elderbernardiifsul/primeiro-harness, com remoto `origin`.
+Para publicar atualizações, após revisar os arquivos e fazer os commits:
 
 ```sh
-git remote add origin URL_DO_REPOSITORIO
 git push -u origin main
 git push origin jornada-1 professor
 git push origin base-original
 ```
 
-Não publique `.aluno/`. O README usa um placeholder que o aluno substitui pelo
-endereço distribuído. Clone sem `--single-branch`: o tutor precisa consultar a
+Não publique `.aluno/`. O README contém o comando com o endereço definitivo.
+Clone sem `--single-branch`: o tutor precisa consultar a
 referência `origin/professor`. Nenhuma credencial deve entrar nos documentos.
 
 ## Organização

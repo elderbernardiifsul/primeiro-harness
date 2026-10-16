@@ -10,7 +10,7 @@ Autor: Codex
 Data: 2026-10-16
 Prompt: Criar e publicar o repositório no GitHub, com visibilidade pública confirmada.
 Resultado: Criado elderbernardiifsul/primeiro-harness; configurado origin e atualizado o roteiro com a URL definitiva. Publicação inclui main, jornada-1, professor e base-original.
-Arquivos: README.md, .harness/CHANGELOG.md; configuração local do remoto Git.
+Arquivos: README.md, professor/guia.md (na branch professor), .harness/CHANGELOG.md; configuração local do remoto Git.
 Verificação: Conta autenticada e estado Git inspecionados; referências remotas e visibilidade conferidas após o envio.
 Autor: OpenCode
 
