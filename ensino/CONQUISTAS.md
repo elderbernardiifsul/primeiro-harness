@@ -54,6 +54,7 @@ o tutor precisa avaliar o conteúdo; o professor pode conferir os registros.
 
 O emissor exige ordem, arquivos existentes, evidência preenchida e verificações
 específicas. Salva resumo das verificações e hash da evidência, além do desenho.
+Na tarefa 06, confere os cinco campos de checkout e a execução do CLI em JSON.
 As checagens não são antifraude, assinatura docente ou avaliação semântica.
 Nunca altere o verificador ou os testes para obter uma conquista.
 

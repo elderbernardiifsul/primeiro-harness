@@ -13,6 +13,14 @@ Resultado: Preservada base-original em Git independente; adicionados tutor socr�
 Arquivos: AGENTS.md, CLAUDE.md, .github/copilot-instructions.md, .gitignore, package.json, README.md, ensino/, scripts/, tests/, docs/INDEX.md, .harness/MEMORY.md, .harness/CHANGELOG.md; ../.gitignore.
 Verificação: npm test aprovado (memória, ordem, evidência, selos, retomada); npm run verificar aprovado (30 arquivos); git diff --check aprovado; fontes oficiais de carregamento consultadas. Compatibilidade das extensões e duração em sala exigem piloto real.
 Autor: OpenCode
+
+======================
+Data: 2026-10-16
+Prompt: Manter infraestrutura e documentação compartilhadas consistentes entre jornada-1 e main.
+Resultado: Sincronizados emissor/verificadores e relatório de validação, sem trazer o produto ou as jornadas posteriores para a branch inicial. Links de exemplos em código não são tratados como referências reais. A aceitação posterior exige contrato de checkout completo e CLI.
+Arquivos: scripts/verificacoes.mjs, scripts/verificar-repo.mjs, ensino/CONQUISTAS.md, ensino/VALIDACAO.md, README.md, .harness/CHANGELOG.md.
+Verificação: Testes da infraestrutura, links locais e git diff --check; clone isolado confirmou que memória e skill sobrevivem à transição de branch. Piloto das integrações VS Code permanece pendente.
+Autor: OpenCode
 ======================
 Data: 2026-10-09
 Prompt: Aprimorar a skill de busca em docs para incorporar conhecimento da web, mantendo documentos sem alterações sem ordem explícita, exceto informações da stack obtidas em documentação oficial e validadas na prática, em diretório dedicado.
