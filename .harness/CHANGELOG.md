@@ -8,6 +8,22 @@ Autor: Codex
 
 ======================
 Data: 2026-10-16
+Prompt: Corrigir avanço entre jornadas para verificar conclusão, sequência e branch, trocar a branch correta e orientar nova sessão.
+Resultado: Adicionados comandos preparar/encerrar com comprovantes e hashes, gate de sequência, validação de branch/estrutura e troca segura sem descartar alterações. Tutor aplica o gate também após sim/continue, encerra antes de convidar para a próxima e para após preparar a branch. Preservada a substituição anterior do README.
+Arquivos: AGENTS.md, ensino/TUTOR.md, ensino/TRANSICAO.md, ensino/CONQUISTAS.md, ensino/jornadas/01.md, ensino/jornadas/02.md, ensino/jornadas/03.md, scripts/lab.mjs, scripts/jornadas.mjs, tests/jornadas.test.mjs, .harness/MEMORY.md, .harness/CHANGELOG.md.
+Verificação: npm test aprovado (7 testes), incluindo Git temporário para sequência incompleta, ausência de memória, evidência alterada, transição real, main só remota, referências da branch anterior, preservação de memória/skill, branch docente/pessoal e bloqueio de alterações locais; npm run verificar e git diff --check aprovados. Comportamento interativo depende de piloto no agente.
+Autor: OpenCode
+
+======================
+Data: 2026-10-16
+Prompt: Substituir o README pelo texto fornecido pelo professor.
+Resultado: README substituído conforme o conteúdo solicitado, incluindo apresentação, setup, retomada, transição de branch e entrega no Classroom.
+Arquivos: README.md, .harness/CHANGELOG.md.
+Verificação: Checagem de links locais com npm run verificar e git diff --check.
+Autor: OpenCode
+
+======================
+Data: 2026-10-16
 Prompt: Criar e publicar o repositório no GitHub, com visibilidade pública confirmada.
 Resultado: Criado elderbernardiifsul/primeiro-harness; configurado origin e atualizado o roteiro com a URL definitiva. Publicação inclui main, jornada-1, professor e base-original.
 Arquivos: README.md, professor/guia.md (na branch professor), .harness/CHANGELOG.md; configuração local do remoto Git.
