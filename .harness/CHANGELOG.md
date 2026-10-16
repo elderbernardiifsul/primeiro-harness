@@ -8,6 +8,14 @@ Autor: Codex
 
 ======================
 Data: 2026-10-16
+Prompt: Registrar as alterações locais do README nas branches jornada-1 e main e fazer push de ambas.
+Resultado: Atualizadas apresentação, preparação e orientações de percurso e entrega do laboratório; removidos dois espaços finais do texto fornecido.
+Arquivos: README.md, .harness/CHANGELOG.md.
+Verificação: git diff --check e npm run verificar em ambas as branches; conferência de igualdade do README entre as branches.
+Autor: OpenCode
+
+======================
+Data: 2026-10-16
 Prompt: Criar e publicar o repositório no GitHub, com visibilidade pública confirmada.
 Resultado: Criado elderbernardiifsul/primeiro-harness; configurado origin e atualizado o roteiro com a URL definitiva. Publicação inclui main, jornada-1, professor e base-original.
 Arquivos: README.md, .harness/CHANGELOG.md; configuração local do remoto Git.
