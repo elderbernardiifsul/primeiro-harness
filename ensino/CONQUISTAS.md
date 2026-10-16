@@ -16,6 +16,7 @@
 ```sh
 node scripts/lab.mjs iniciar "Seu nome"
 node scripts/lab.mjs status
+node scripts/lab.mjs preparar 1
 node scripts/lab.mjs marco "J1: aguardando explicação sobre skills"
 node scripts/lab.mjs premiar 01
 node scripts/lab.mjs painel
@@ -51,6 +52,14 @@ Não cole este exemplo como resposta. Campos preenchidos não provam compreensã
 o tutor precisa avaliar o conteúdo; o professor pode conferir os registros.
 
 ## Funcionamento e limites
+
+Antes de iniciar ou retomar uma jornada, `node scripts/lab.mjs preparar N`
+confere os comprovantes das jornadas anteriores e a branch. Para preparar a
+transição aceita pelo aluno, use `preparar N --trocar-branch`: a troca só ocorre
+com sequência válida e árvore de trabalho limpa. O comando não inicia o roteiro.
+Ao terminar, execute `node scripts/lab.mjs encerrar N`; após sucesso, sugira
+uma nova sessão para a próxima jornada. Se houver pendência, retome a jornada
+indicada antes de prosseguir. Evidências antigas válidas continuam aceitas.
 
 O emissor exige ordem, arquivos existentes, evidência preenchida e verificações
 específicas. Salva resumo das verificações e hash da evidência, além do desenho.
