@@ -53,6 +53,7 @@ Para compartilhar o código, revise `git diff`; não versione `.aluno/`.
 - [Conhecimento: fundamentos, patterns e antipatterns](ensino/conhecimento/INDEX.md)
 - [Compatibilidade e fontes oficiais](ensino/AMBIENTE.md)
 - [Conquistas e registro](ensino/CONQUISTAS.md)
+- [Validações executadas e limites](ensino/VALIDACAO.md)
 - [Documentação original](docs/INDEX.md)
 
 A tag `base-original` preserva o laboratório anterior; `jornada-1` contém o

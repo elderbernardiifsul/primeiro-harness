@@ -16,6 +16,14 @@ Autor: OpenCode
 
 ======================
 Data: 2026-10-16
+Prompt: Verificar a construção completa e reforçar evidências para a premiação.
+Resultado: Clone temporário percorreu J1, transição, referências docentes, recuperação, funcionalidade, regressão e master; identidade e skill preservadas. Aceitação confere os cinco campos de checkout e execução do CLI em JSON; checador de links ignora exemplos em código. Relatório separa testes reais de piloto pedagógico pendente.
+Arquivos: scripts/verificacoes.mjs, scripts/verificar-repo.mjs, ensino/CONQUISTAS.md, ensino/VALIDACAO.md, ensino/jornadas/03.md, README.md, .harness/CHANGELOG.md.
+Verificação: Validador docente inicial aprovado em clone isolado; reforços serão reexecutados na referência docente. Node.js v26.11.1. Sem execução real das quatro integrações VS Code e sem piloto de duração.
+Autor: OpenCode
+
+======================
+Data: 2026-10-16
 Prompt: Entregar projeto JavaScript com harness defeituoso, evidências reproduzíveis e recuperação socrática, seguido de funcionalidade e bug.
 Resultado: Main recebe carrinho CLI sem dependências, contrato vigente e histórico, três antipatterns semeados, reprodutores de consequências e jornadas 2–3. Suíte do produto falha intencionalmente no desconto; smoke passa. Frete ausente e defeito de subtotal monetário reservados à jornada final.
 Arquivos: projeto/, scripts/cenarios.mjs, ensino/jornadas/02.md, ensino/jornadas/03.md, .harness/CHANGELOG.md.
