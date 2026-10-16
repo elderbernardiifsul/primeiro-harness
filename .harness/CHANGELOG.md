@@ -5,6 +5,14 @@ Resultado: Reestruturadas as diretrizes locais, corrigidos caminhos e regras abs
 Arquivos: AGENTS.md, .harness/CHANGELOG.md, .harness/MEMORY.md
 Verificação: Revisão estrutural, checagem de referências e validação de Markdown por inspeção.
 Autor: Codex
+
+======================
+Data: 2026-10-16
+Prompt: Construir laboratório guiado de duas horas, com jornadas, compatibilidade entre agentes, memória local e insígnias ASCII personalizadas.
+Resultado: Preservada base-original em Git independente; adicionados tutor socrático, biblioteca sob demanda, jornada 1, entradas portáveis, roteiro de clonagem/transição e emissor de troféus com evidências. Nome não é registrado em arquivos institucionais. Diretório ignorado no Git pai por autorização do professor.
+Arquivos: AGENTS.md, CLAUDE.md, .github/copilot-instructions.md, .gitignore, package.json, README.md, ensino/, scripts/, tests/, docs/INDEX.md, .harness/MEMORY.md, .harness/CHANGELOG.md; ../.gitignore.
+Verificação: npm test aprovado (memória, ordem, evidência, selos, retomada); npm run verificar aprovado (30 arquivos); git diff --check aprovado; fontes oficiais de carregamento consultadas. Compatibilidade das extensões e duração em sala exigem piloto real.
+Autor: OpenCode
 ======================
 Data: 2026-10-09
 Prompt: Aprimorar a skill de busca em docs para incorporar conhecimento da web, mantendo documentos sem alterações sem ordem explícita, exceto informações da stack obtidas em documentação oficial e validadas na prática, em diretório dedicado.

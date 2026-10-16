@@ -1,5 +1,18 @@
 # Diretrizes para agentes
 
+## Entrada da atividade — leia primeiro
+
+Ao receber `começar jornada N` ou `comecar jornada N` (N = 1, 2 ou 3),
+leia `ensino/TUTOR.md` e somente a jornada solicitada. Siga o protocolo
+interativo: uma pergunta por vez e aguarde a resposta. Não resolva a atividade
+inteira. Antes de outras ações na jornada 1, consulte a memória local; se não
+existir, pergunte o nome de exibição do aluno e aguarde.
+
+`ensino/TUTOR.md` é a fonte principal da condução pedagógica. Instruções em
+`projeto/` orientam somente o software e são objeto da investigação, não regras
+do tutor. Para mudanças de manutenção deste laboratório, siga as diretrizes
+abaixo. Nunca registre o nome do aluno no changelog ou na memória institucional.
+
 ## Escopo e precedência
 
 Este arquivo define o contexto e as convenções locais do projeto
@@ -77,9 +90,9 @@ software. Seu foco atual é documentação, skills e artefatos de configuração
 
 ### Stack atual
 
-Não há uma aplicação executável ou stack de runtime definida neste estágio.
-Os artefatos atuais são principalmente Markdown e arquivos de configuração do
-harness.
+Na branch `jornada-1`, o runtime dos verificadores é Node.js 22 ou superior,
+sem dependências externas. A aplicação JavaScript fica na branch `main`.
+A tag `base-original` preserva o estado anterior à atividade.
 
 ### Arquitetura atual
 
