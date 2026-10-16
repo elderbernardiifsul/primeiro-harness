@@ -12,7 +12,8 @@ function visitar(pasta) {
     else {
       arquivos++;
       if (extname(caminho) !== '.md') continue;
-      const texto = readFileSync(caminho, 'utf8');
+      // Exemplos dentro de blocos de código não são links do documento.
+      const texto = readFileSync(caminho, 'utf8').replace(/^```[^\n]*\n[\s\S]*?^```\s*$/gm, '');
       for (const match of texto.matchAll(/\[[^\]]*\]\(([^)\s]+)\)/g)) {
         const destino = match[1];
         if (/^(https?:|mailto:|#)/.test(destino)) continue;

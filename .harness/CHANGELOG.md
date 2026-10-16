@@ -16,6 +16,14 @@ Autor: OpenCode
 
 ======================
 Data: 2026-10-16
+Prompt: Manter referência docente acessível ao tutor, com pistas, soluções e validação do laboratório completo.
+Resultado: Branch professor acrescenta guia de publicação/aplicação, pistas graduais, soluções, modelos da skill/código/testes e validador em clone temporário. A matriz distingue verificações automatizadas de piloto real de tutoria.
+Arquivos: professor/, scripts/verificar-repo.mjs, .harness/CHANGELOG.md.
+Verificação: npm test, checagem de links e sintaxe; checador ajustado para não interpretar exemplos cercados por blocos de código como links reais. Validador completo exige a branch docente já commitada para testar consulta remota em clone; seu resultado será registrado após execução.
+Autor: OpenCode
+
+======================
+Data: 2026-10-16
 Prompt: Entregar projeto JavaScript com harness defeituoso, evidências reproduzíveis e recuperação socrática, seguido de funcionalidade e bug.
 Resultado: Main recebe carrinho CLI sem dependências, contrato vigente e histórico, três antipatterns semeados, reprodutores de consequências e jornadas 2–3. Suíte do produto falha intencionalmente no desconto; smoke passa. Frete ausente e defeito de subtotal monetário reservados à jornada final.
 Arquivos: projeto/, scripts/cenarios.mjs, ensino/jornadas/02.md, ensino/jornadas/03.md, .harness/CHANGELOG.md.
