@@ -1,5 +1,13 @@
 ======================
 Data: 2026-10-16
+Prompt: Ao aluno dizer que encerrou a tarefa, mostrar relatório com insígnias e evidências e orientar no README a entrega por print ou fotografia.
+Resultado: Adicionado comando entrega e gatilho encerrei a tarefa no contrato do tutor. Relatório mostra identidade, conquistas, MASTER, arquivos e pendências, confere hashes e salva .aluno/ENTREGA.txt sem reemitir prêmios ou modificar registros. README e materiais passam a pedir uma imagem legível dessa tela, com evidências preservadas localmente.
+Arquivos: scripts/lab.mjs, scripts/verificar-harness.mjs, tests/entrega.test.mjs, AGENTS.md, README.md, ensino/TUTOR.md, ensino/CONQUISTAS.md, ensino/INICIO.md, ensino/jornadas/03.md, ensino/VALIDACAO.md, .harness/CHANGELOG.md.
+Verificação: 26 testes da raiz aprovados; links, entradas locais e git diff --check aprovados. Comando executado em cópia dos registros reais do piloto: 7/7, MASTER, sete evidências conferidas; registros originais/copiados preservados. Fonte/logs em entrega-aluno/ no audit dir. Sem commit, push ou alteração dos defeitos didáticos. A checagem de entrega não reexecuta a aceitação do produto.
+Autor: Exocórtex.IA
+
+======================
+Data: 2026-10-16
 Prompt: Aplicar no original as correções propostas pelo piloto pedagógico, sem publicar.
 Resultado: Corrigido o falso positivo textual da conquista 05, mantidos os gates técnicos e isolado o ambiente do subprocesso Node. Adicionadas onze regressões, incluindo o parágrafo defeituoso original apontado na revisão independente. Reforçados limites de turno/feedback, tratamento de contaminação, pausas, captura de exit code, aviso de reinício interno da J1 e distinção de skill nativa/fallback. Esclarecido o escopo do changelog para não registrar execução do aluno; documentadas checagem docente, consumo e limites de duração. Preservadas mudanças locais anteriores e todos os defeitos didáticos de projeto/.
 Arquivos: scripts/verificacoes.mjs, scripts/verificar-harness.mjs, tests/verificacoes.test.mjs, AGENTS.md, README.md, ensino/TUTOR.md, ensino/INICIO.md, ensino/AMBIENTE.md, ensino/jornadas/01.md, ensino/VALIDACAO.md, .harness/CHANGELOG.md.

@@ -14,6 +14,7 @@ export const arquivosComuns = [
   'scripts/verificacoes.mjs', 'scripts/verificar-repo.mjs',
   'scripts/verificar-harness.mjs', 'tests/harness.test.mjs',
   'tests/verificacoes.test.mjs',
+  'tests/entrega.test.mjs',
 ];
 
 export function verificarHarness(base, refs = []) {

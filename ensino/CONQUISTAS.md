@@ -20,6 +20,7 @@ node scripts/lab.mjs preparar 1
 node scripts/lab.mjs marco "J1: aguardando explicação sobre skills"
 node scripts/lab.mjs premiar 01
 node scripts/lab.mjs painel
+node scripts/lab.mjs entrega
 ```
 
 O nome é pedido pelo tutor antes de iniciar a J1. `iniciar` cria uma memória uma
@@ -68,5 +69,14 @@ As checagens não são antifraude, assinatura docente ou avaliação semântica.
 Nunca altere o verificador ou os testes para obter uma conquista.
 
 Insígnias já emitidas mantêm o selo. `master` revalida os artefatos atuais.
-Para reimprimir, execute `painel`; para entregar, faça um print em fonte
-monoespaçada de `.aluno/insignias/PAINEL.txt`. Guarde os JSON para revisão.
+Para reimprimir os troféus, execute `painel`. Para a entrega, diga ao tutor
+`encerrei a tarefa` ou execute `node scripts/lab.mjs entrega`: o relatório mostra
+as insígnias registradas e os arquivos presentes em `.aluno/evidencias/`, confere
+os hashes das evidências associadas e aponta pendências sem emitir prêmios.
+O estado completo exige as sete conquistas, MASTER, evidências conferidas e
+os três encerramentos já registrados. Isso não revalida o código do produto.
+
+Envie um print da tela do relatório ou uma fotografia legível na atividade do
+Classroom. A cópia textual fica em `.aluno/ENTREGA.txt`; preserve os JSON para
+revisão. Não é necessário anexar um print de cada troféu nem enviar a pasta de
+evidências junto da imagem, salvo nova orientação do professor.

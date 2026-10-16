@@ -68,3 +68,29 @@ Um novo piloto deve verificar a adesão do tutor às instruções revisadas. Est
 manutenção não repete as três jornadas nem valida aprendizagem humana ou
 descoberta nativa no Claude Code. Os logs e o snapshot anterior ficam no audit dir
 do piloto, em `correcoes-original/`, sem alterar as evidências históricas.
+
+## Relatório de entrega — 2026-10-16
+
+O comando `node scripts/lab.mjs entrega` imprime e salva `.aluno/ENTREGA.txt`:
+nome, insígnias e selos registrados, MASTER, arquivos diretos do diretório de
+evidências e pendências. Ele confere os hashes associados às conquistas, sem
+alterar progresso, evidências ou prêmios. Não revalida o código da aplicação.
+
+Seis testes adicionais cobrem percurso vazio/parcial, insígnia emitida pela API,
+arquivos sem conquista associada, preservação dos registros, evidência removida,
+hash alterado, JSON inválido, ausência de memória e execução pelo CLI. Suíte da
+raiz: 26 testes aprovados; links, harness local e diff sem erros.
+
+Uma cópia dos registros reais do piloto produziu relatório completo com 7/7,
+MASTER e sete hashes conferidos. A fonte e todos os registros copiados ficaram
+intactos; o comando criou apenas o relatório textual. Evidências desta mudança
+ficam em `entrega-aluno/` no audit dir do piloto. O README e o tutor definem como
+entrega um print da tela ou uma fotografia legível; os JSON ficam guardados para
+eventual revisão. Não houve publicação ou sincronização das branches.
+
+Uma sessão nova Claude Code Opus 5 recebeu apenas `encerrei a tarefa`, leu o
+contrato local, executou o comando de entrega com ferramenta real e exibiu o
+relatório inteiro com a orientação de print/fotografia. Uma tentativa de anexar
+`echo` ao comando exigiu permissão; o tutor repetiu o comando simples, que passou.
+O resultado final e as chamadas estão em `tutor-encerrei-raw.jsonl` no audit dir.
+Esse teste pontual não equivale a repetir as três jornadas com aluno humano.

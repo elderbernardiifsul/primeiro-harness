@@ -99,10 +99,24 @@ a tutoria, como descrito em [Ambiente](ensino/AMBIENTE.md).
 
 ## Entrega
 
-Ao ganhar cada prêmio, faça um print do troféu no terminal ou no chat. No final,
-execute `node scripts/lab.mjs painel`, abra `.aluno/insignias/PAINEL.txt` e
-envie o print final para a atividade no classroom, junto com
-`.aluno/evidencias/`: o prêmio resume evidências, não as substitui.
+Quando terminar, diga ao tutor: **“encerrei a tarefa”**. Ele mostrará um relatório
+com seu nome, as insígnias conquistadas, a situação do MASTER e a lista dos
+arquivos que ficaram em `.aluno/evidencias/`. Se houver pendências, elas também
+aparecerão; dizer que terminou não cria conquistas.
+
+**Sua entrega é um print dessa tela ou uma fotografia legível dela**, enviado
+para a atividade no Classroom. A imagem deve mostrar a identificação, as
+insígnias e a lista de evidências. Não precisa enviar um print de cada troféu.
+
+Se precisar abrir o relatório de novo, peça ao tutor ou execute na raiz:
+
+```sh
+node scripts/lab.mjs entrega
+```
+
+O relatório também fica em `.aluno/ENTREGA.txt`. Preserve `.aluno/evidencias/`
+para eventual revisão do professor; a lista na tela não substitui os registros.
+O painel de troféus continua disponível por `node scripts/lab.mjs painel`.
 
 ## Mapa rápido
 

@@ -34,3 +34,8 @@ explicação e oferece uma pista mais direta; não inventa respostas ou conquist
 `.aluno/evidencias/` guarda suas respostas e resultados; `.aluno/insignias/`,
 os prêmios. Esses arquivos e a skill criada sobrevivem à troca normal de branch.
 Não sobrevivem à exclusão da pasta ou a `git clean -fdx`: não use esse comando.
+
+Ao terminar, diga **“encerrei a tarefa”**. O tutor mostrará o relatório com suas
+insígnias e a lista de evidências. Entregue um print dessa tela ou uma fotografia
+legível na atividade do Classroom. A cópia textual fica em `.aluno/ENTREGA.txt`;
+guarde as evidências para eventual revisão do professor.
