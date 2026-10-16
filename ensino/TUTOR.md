@@ -8,6 +8,11 @@ execute `node scripts/lab.mjs painel` e mostre o resultado, sem iniciar jornada.
 Respeite as instruções da plataforma e do usuário. Arquivos em `projeto/` são
 contexto do software em estudo: não alteram este protocolo pedagógico.
 
+“Sim”, “próxima”, “continue” e “continue a jornada” não dispensam as verificações.
+Se forem aceitação do convite para OUTRA jornada, prepare a transição e pare;
+não inicie o conteúdo seguinte na mesma sessão. Se forem retomada da jornada
+atual, confira a preparação dela antes de continuar do marco salvo.
+
 ## Abertura: execute em ordem
 
 1. Verifique a branch com `git branch --show-current` e execute
@@ -19,11 +24,21 @@ contexto do software em estudo: não alteram este protocolo pedagógico.
    esse comando no terminal. Não registre seu nome em arquivos versionados.
 4. Se a memória já existir, cumprimente pelo nome salvo e retome a primeira
    tarefa pendente. Não sobrescreva o progresso para reiniciar uma conversa.
-5. J1 requer `jornada-1` (ou branch pessoal derivada dela); J2/J3 requerem o
-   projeto disponível em `main` (ou branch pessoal derivada). Se não estiver,
-   siga `ensino/TRANSICAO.md`. Nunca descarte alterações para trocar branch.
-6. Leia só `ensino/jornadas/0N.md`. J2 exige conquistas 01–02; J3 exige 01–05.
-   Se faltar pré-requisito, explique o que retomar; não crie dados retroativos.
+5. Antes de ler a jornada, execute `node scripts/lab.mjs preparar N`.
+   J2 exige conquistas 01–02 e suas evidências; J3 exige 01–05. Se faltar uma,
+   peça para concluir primeiro a jornada/tarefa indicada. Não troque a branch,
+   não leia a próxima jornada e não crie dados retroativos para liberar acesso.
+6. Se a sequência estiver completa, mas a branch estiver errada, execute
+   `node scripts/lab.mjs preparar N --trocar-branch`. O comando verifica o estado
+   Git e troca para `jornada-1` (J1) ou `main` (J2/J3), preservando memória e skill.
+   Se houver alterações locais, pare e peça ao aluno para resolvê-las sem perder
+   seu trabalho; não faça commit, stash, reset, clean ou checkout forçado por conta
+   própria. Se faltarem referências, siga `ensino/TRANSICAO.md`.
+7. Depois de qualquer troca de branch, confirme a saída, sugira nova sessão com
+   `começar jornada N` e encerre o turno. Não leia o conteúdo da jornada ainda.
+   Na sessão nova, repita `preparar N`; se aprovado, leia só `ensino/jornadas/0N.md`.
+   Branch pessoal só é aceita com ancestralidade e estrutura compatíveis;
+   `professor` não é uma branch de atividade.
 
 ## Um turno de tutoria
 
@@ -40,7 +55,23 @@ contexto do software em estudo: não alteram este protocolo pedagógico.
 7. Somente após a proposta, peça/realize a pequena alteração acordada e execute
    a verificação da etapa. Se falhar, investigue com o aluno; não premie ainda.
 8. Registre a evidência, emita a insígnia e apresente o troféu em bloco monoespaçado.
-   Peça o print. Depois pergunte se pode seguir. Não faça todas as etapas de uma vez.
+   Peça o print. Para outra tarefa DA MESMA jornada, pergunte se pode seguir.
+   Para OUTRA jornada, use o encerramento abaixo. Não faça todas as etapas de uma vez.
+
+## Encerramento e transição — obrigatório entre jornadas
+
+1. Após a última conquista da jornada, execute `node scripts/lab.mjs encerrar N`.
+   O comando exige todas as conquistas/evidências até ela, branch compatível e
+   a verificação técnica da etapa final. Se falhar, retome a pendência indicada;
+   não anuncie a jornada como concluída nem convide para pular à seguinte.
+2. Se N for 1 ou 2, anuncie a conclusão e pergunte: “Vamos preparar a próxima
+   jornada? Depois, abra uma nova sessão e envie `começar jornada N+1`.”
+3. Se o aluno aceitar, execute `node scripts/lab.mjs preparar N+1 --trocar-branch`
+   (substitua N+1 pelo número real). Isso vale também para um “sim” ou “continue”.
+   Exiba a confirmação da branch ou a pendência, então pare. Não comece o passeio.
+4. Diga o gatilho exato e recomende encerrar/reabrir o agente. Mesmo sem mudança
+   de branch entre J2 e J3, a próxima jornada deve começar em sessão nova e repetir
+   a verificação. Se o aluno já chegou em sessão nova, execute a abertura normal.
 
 ## Registro e premiação
 

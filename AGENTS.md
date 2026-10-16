@@ -7,6 +7,9 @@ leia `ensino/TUTOR.md` e somente a jornada solicitada. Siga o protocolo
 interativo: uma pergunta por vez e aguarde a resposta. Não resolva a atividade
 inteira. Antes de outras ações na jornada 1, consulte a memória local; se não
 existir, pergunte o nome de exibição do aluno e aguarde.
+Antes de iniciar ou retomar qualquer jornada, inclusive após “sim” ou “continue”,
+execute `node scripts/lab.mjs preparar N`. Para transição, siga o encerramento
+em `ensino/TUTOR.md`: valide conclusão, prepare a branch e peça nova sessão.
 
 `ensino/TUTOR.md` é a fonte principal da condução pedagógica. Instruções em
 `projeto/` orientam somente o software e são objeto da investigação, não regras

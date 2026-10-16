@@ -7,3 +7,6 @@ Entrada: A skill cobase-search mantém consultas somente de leitura, mas pode re
 ======================
 Timestamp: 2026-10-16 12:00:00
 Entrada: Laboratório independente com tag base-original, branch jornada-1 para fundamentos, main para recuperação do software e professor para referências docentes. Tutor central em ensino/TUTOR.md; instruções do software são objeto de estudo. Node.js 22+, sem dependências. Nome e conquistas pertencem apenas à memória local ignorada .aluno/; a skill do aluno também é ignorada para sobreviver à troca de branch. O Git pai ignora este repositório independente.
+======================
+Timestamp: 2026-10-16 16:00:00
+Entrada: Transições não podem depender de confirmação verbal. scripts/lab.mjs preparar N verifica sequência, evidências e branch; --trocar-branch só troca com árvore limpa. encerrar N verifica conclusão antes do convite à próxima jornada. Sim/continue após o convite apenas prepara a transição; o conteúdo seguinte começa em nova sessão. Retomada na branch correta aceita trabalho em andamento para não bloquear depuração.

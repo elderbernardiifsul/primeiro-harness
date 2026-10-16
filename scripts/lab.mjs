@@ -5,6 +5,7 @@ import { randomUUID, createHash } from 'node:crypto';
 import assert from 'node:assert/strict';
 import { conquistas, master, trofeu } from './trofeus.mjs';
 import { verificarTarefa } from './verificacoes.mjs';
+import { tarefasPorJornada, numeroJornada, verificarBranch } from './jornadas.mjs';
 
 export const raiz = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 export function laboratorio(base = raiz) {
@@ -32,7 +33,7 @@ export function laboratorio(base = raiz) {
     salvar(dados);
     return `Memória local criada para ${nome}.`;
   }
-  function evidencia(id) {
+  function evidencia(id, { exigirArquivos = true } = {}) {
     const conteudo = readFileSync(resolve(pasta, 'evidencias', `${id}.json`), 'utf8');
     const e = JSON.parse(conteudo);
     for (const campo of ['resposta', 'proposta', 'feedback', 'antes', 'depois', 'observacao']) {
@@ -44,7 +45,7 @@ export function laboratorio(base = raiz) {
       assert.equal(typeof arquivo, 'string');
       const rel = relative(base, resolve(base, arquivo));
       assert.ok(rel && !rel.startsWith('..') && !isAbsolute(rel), 'Use arquivos dentro do laboratório.');
-      assert.ok(existsSync(resolve(base, arquivo)), `Arquivo inexistente: ${arquivo}`);
+      if (exigirArquivos) assert.ok(existsSync(resolve(base, arquivo)), `Arquivo inexistente: ${arquivo}`);
     }
     return { e, hash: createHash('sha256').update(conteudo).digest('hex') };
   }
@@ -100,7 +101,57 @@ export function laboratorio(base = raiz) {
     assert.ok(typeof s === 'string' && s.trim().length > 0, 'Informe o próximo ponto.');
     const dados = carregar(); dados.marco = s; salvar(dados); return s;
   }
-  return { iniciar, carregar, premiar, emitirMaster, painel, marco };
+  function conferirConclusao(dados, jornadas) {
+    for (const jornada of jornadas) {
+      for (const id of tarefasPorJornada[jornada]) {
+        assert.ok(dados.conquistas[id],
+          `Sequência incompleta: retome primeiro a jornada ${jornada}, tarefa ${id}. Abra uma nova sessão e envie começar jornada ${jornada}.`);
+        let registro;
+        // Um comprovante pode citar arquivos presentes apenas na branch da etapa concluída.
+        try { registro = evidencia(id, { exigirArquivos: false }); }
+        catch (erro) { throw new Error(`Retome a jornada ${jornada}, tarefa ${id}: ${erro.message}`); }
+        assert.equal(registro.hash, dados.conquistas[id].evidenciaSha256,
+          `Retome a jornada ${jornada}, tarefa ${id}: a evidência mudou após a conquista. Revise com o tutor antes de avançar.`);
+      }
+    }
+  }
+  function prepararJornada(valor, { trocarBranch = false } = {}) {
+    const n = numeroJornada(valor);
+    assert.ok(n === 1 || existsSync(memoria),
+      'Sequência incompleta: comece primeiro a jornada 1 em uma nova sessão para registrar seu nome e realizar as tarefas iniciais.');
+    const dados = carregar();
+    // Pré-requisitos são verificados antes de qualquer troca de branch.
+    conferirConclusao(dados, Array.from({ length: n - 1 }, (_, i) => i + 1));
+    const branch = verificarBranch(base, n, trocarBranch);
+    const retomada = carregar();
+    assert.equal(retomada.alunoId, dados.alunoId, 'Memória do aluno mudou durante a transição. Não avance.');
+    conferirConclusao(retomada, Array.from({ length: n - 1 }, (_, i) => i + 1));
+    return {
+      jornada: n, ...branch,
+      orientacao: branch.trocouBranch
+        ? `Branch preparada. Encerre esta sessão, abra uma nova e envie começar jornada ${n}. Não inicie a jornada nesta sessão.`
+        : `Verificação aprovada para a jornada ${n}. Se veio de outra jornada, abra uma sessão nova antes de iniciar.`,
+    };
+  }
+  async function encerrarJornada(valor) {
+    const n = numeroJornada(valor);
+    const dados = carregar();
+    conferirConclusao(dados, Array.from({ length: n }, (_, i) => i + 1));
+    verificarBranch(base, n);
+    const ultima = tarefasPorJornada[n].at(-1);
+    await verificarTarefa(base, ultima, evidencia(ultima).e);
+    if (n === 3) assert.ok(dados.conquistas.MASTER, 'Emita o master antes de encerrar a jornada 3.');
+    dados.jornadasConcluidas ??= {};
+    dados.jornadasConcluidas[n] = { concluidaEm: new Date().toISOString() };
+    dados.marco = n < 3
+      ? `Jornada ${n} concluída. Preparar branch e abrir nova sessão para começar jornada ${n + 1}.`
+      : 'Atividade concluída; entregar prints e preservar evidências.';
+    salvar(dados);
+    return n < 3
+      ? `Jornada ${n} concluída e verificada. Sugira abrir uma nova sessão para a jornada ${n + 1}. Se o aluno aceitar, execute preparar ${n + 1} --trocar-branch, confirme o resultado e pare: não inicie o conteúdo na sessão atual.`
+      : 'Jornada 3 concluída e verificada. Mostre o painel e oriente a entrega.';
+  }
+  return { iniciar, carregar, premiar, emitirMaster, painel, marco, prepararJornada, encerrarJornada };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
@@ -115,7 +166,12 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
       case 'premiar': saida = await lab.premiar(args[0]); break;
       case 'master': saida = await lab.emitirMaster(); break;
       case 'painel': saida = lab.painel(); break;
-      default: throw new Error('Comandos: iniciar NOME | status | marco TEXTO | premiar NN | master | painel');
+      case 'preparar':
+        assert.ok(args.length <= 2 && (!args[1] || args[1] === '--trocar-branch'), 'Use preparar N [--trocar-branch].');
+        saida = JSON.stringify(lab.prepararJornada(args[0], { trocarBranch: args[1] === '--trocar-branch' }), null, 2);
+        break;
+      case 'encerrar': saida = await lab.encerrarJornada(args[0]); break;
+      default: throw new Error('Comandos: iniciar NOME | status | marco TEXTO | premiar NN | master | painel | preparar N [--trocar-branch] | encerrar N');
     }
     console.log(saida);
   } catch (erro) {
