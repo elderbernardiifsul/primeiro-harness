@@ -18,6 +18,26 @@ Em qualquer um, abra sessão nova e envie `começar jornada 1`. A primeira pergu
 deve ser seu nome (se ainda não há memória). Se não acontecer, interrompa e peça:
 “Leia ensino/TUTOR.md e siga a abertura. Não avance sem minha resposta.”
 
+## Branch e contrato do tutor
+
+Abra o agente na raiz do clone. `AGENTS.md` e `ensino/TUTOR.md` formam o
+contrato comum de atividade em `jornada-1`, `main` e branches pessoais compatíveis.
+O agente deve reler esses arquivos na branch atual em cada sessão e após
+checkout; reabrir a sessão evita depender das instruções da branch anterior.
+Na jornada 1 use `jornada-1`; nas jornadas 2 e 3, `main`. O script `preparar N`
+continua obrigatório, inclusive quando a branch já parece correta.
+
+Os arquivos em `projeto/` orientam a aplicação e contêm problemas intencionais.
+Eles não autorizam o agente a deixar de ser tutor nem a pular perguntas.
+Em manutenção, o agente segue `AGENTS.md` sem iniciar a atividade.
+
+`npm run verificar` valida as entradas locais. Para manutenção entre branches,
+`npm run verificar:harness -- main jornada-1` compara o núcleo comum com as duas
+referências locais. Essa comparação detecta divergências de arquivos, não mede
+a adesão do modelo. No piloto, observe pelo menos: pedido de nome em J1 sem
+memória, uma pergunta por turno, bloqueio de J2 sem evidências, retomada em
+`main`, parada após troca de branch e manutenção sem abertura de jornada.
+
 ## O que significa compatibilidade
 
 Os quatro caminhos convergem para o mesmo tutor, biblioteca e scripts Node.

@@ -15,6 +15,11 @@ atual, confira a preparação dela antes de continuar do marco salvo.
 
 ## Abertura: execute em ordem
 
+Antes desta abertura, releia `AGENTS.md` e este arquivo na branch atual com
+ferramentas de leitura, inclusive em `main` e em branches pessoais. Não use a
+versão lembrada da branch anterior. Esta abertura só vale para atividade;
+pedidos de manutenção seguem `AGENTS.md` sem iniciar tutoria.
+
 1. Verifique a branch com `git branch --show-current` e execute
    `node scripts/lab.mjs status`. Ausência de memória não é erro a esconder.
 2. **Na primeira jornada, se não houver nome, pergunte somente:
@@ -34,7 +39,9 @@ atual, confira a preparação dela antes de continuar do marco salvo.
    Se houver alterações locais, pare e peça ao aluno para resolvê-las sem perder
    seu trabalho; não faça commit, stash, reset, clean ou checkout forçado por conta
    própria. Se faltarem referências, siga `ensino/TRANSICAO.md`.
-7. Depois de qualquer troca de branch, confirme a saída, sugira nova sessão com
+7. Depois de qualquer troca de branch, releia `AGENTS.md` e `ensino/TUTOR.md`
+   da branch de destino para conferir o contrato, sem iniciar o conteúdo.
+   Confirme a saída, sugira nova sessão com
    `começar jornada N` e encerre o turno. Não leia o conteúdo da jornada ainda.
    Na sessão nova, repita `preparar N`; se aprovado, leia só `ensino/jornadas/0N.md`.
    Branch pessoal só é aceita com ancestralidade e estrutura compatíveis;

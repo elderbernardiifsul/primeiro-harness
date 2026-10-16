@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { resolve, dirname, extname } from 'node:path';
 import { raiz } from './lab.mjs';
+import { verificarHarness } from './verificar-harness.mjs';
 
 const erros = [];
 let arquivos = 0;
@@ -24,6 +25,7 @@ function visitar(pasta) {
   }
 }
 visitar(raiz);
+erros.push(...verificarHarness(raiz));
 for (const arquivo of ['AGENTS.md', 'CLAUDE.md', '.github/copilot-instructions.md', 'ensino/TUTOR.md']) {
   if (!existsSync(resolve(raiz, arquivo))) erros.push(`Entrada ausente: ${arquivo}`);
 }

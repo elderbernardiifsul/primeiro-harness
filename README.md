@@ -24,9 +24,12 @@ Uma boa jornada e qualquer problema ou dúvida, entre em contato.
    ```
 
 4. Abra **a pasta clonada**, não sua pasta-pai: `code primeiro-harness`.
-5. Caso tenha clonado o repositorio sem o '--branch', troque para branch jornada-1 ou peça para o agente fazer.
-5. No terminal integrado, execute `npm test` e `npm run verificar`.
-6. No chat do agente, em modo com leitura, edição e terminal, envie:
+5. Caso tenha clonado sem `--branch`, você estará em `main`. O harness também
+   funciona nela: ao pedir a jornada 1, o tutor verificará a branch e orientará a
+   troca segura para `jornada-1`, seguida de nova sessão. Para trocar antes de
+   abrir o agente, use `git switch jornada-1` com a árvore de trabalho limpa.
+6. No terminal integrado, execute `npm test` e `npm run verificar`.
+7. No chat do agente, em modo com leitura, edição e terminal, envie:
 
 > Sugiro abrir no terminal do vscode ou no chat via extensão.
 
@@ -48,11 +51,47 @@ Depois de terminar a primeira, siga a transição abaixo. Feita a transição, "
 | Premiação e entrega | 5 min | `minhas insígnias` |
 
 Ao concluir a primeira jornada, siga [a transição de branch](ensino/TRANSICAO.md).
-. Esta etapa é fundamental, pois o código que precisamos está na branch main. Abra uma sessão nova no agente para cada uma das demais jornadas. O tutor retomará seu progresso local.
+Esta etapa é fundamental, pois o código que precisamos está na branch `main`.
+As jornadas 2 e 3 usam `main`; não exigem branches `jornada-2` ou `jornada-3`.
+Abra uma sessão nova no agente para cada jornada e depois de trocar de branch.
+O tutor relerá as instruções atuais e retomará seu progresso local.
 Se ele não reconhecer o gatilho, envie: **“Leia AGENTS.md e ensino/TUTOR.md;
 comece a jornada N e aguarde minha resposta a cada pergunta.”**
 
 No Mapa rápido, há links para materiais para leitura, que a jornada usará para lhe guiar, que podem ser lidos. Foram feitos para isso.
+
+## O harness em cada branch
+
+O mesmo contrato do tutor acompanha `main`, `jornada-1` e as branches pessoais
+compatíveis. Muda o material da etapa: a primeira branch tem o passeio inicial;
+`main` acrescenta o software que vamos investigar. As regras de tutoria continuam
+na raiz, mesmo quando o agente trabalha em `projeto/`.
+
+O ponto de entrada é [AGENTS.md](AGENTS.md), que encaminha a atividade ao
+[tutor central](ensino/TUTOR.md). Claude Code e Copilot têm entradas próprias
+que apontam para esse contrato. Uma referência a um arquivo não prova sua leitura.
+Se o agente ignorar as regras, interrompa e envie, substituindo N pela jornada:
+
+```text
+Leia AGENTS.md e ensino/TUTOR.md da branch atual com ferramentas de leitura.
+Confira a branch e meu progresso local. Prepare a jornada N pelo script antes
+de iniciar; se trocar de branch, pare e peça nova sessão. Faça uma pergunta
+por vez e aguarde minha resposta. Não resolva a atividade por mim.
+```
+
+Para quem mantém o laboratório: depois de registrar uma mudança do núcleo comum
+nas duas branches locais, confira se continuam iguais:
+
+```sh
+npm run verificar:harness -- main jornada-1
+```
+
+Sem argumentos, esse comando verifica presença e referências das entradas na
+cópia atual. Com referências Git, compara o núcleo comum com cada uma delas,
+sem trocar de branch nem copiar o software. Para verificar o que foi buscado do
+remoto, use `origin/main origin/jornada-1` após atualizar as referências.
+A checagem não garante que um modelo cumpra as instruções; isso exige observar
+a tutoria, como descrito em [Ambiente](ensino/AMBIENTE.md).
 
 ## Entrega
 
