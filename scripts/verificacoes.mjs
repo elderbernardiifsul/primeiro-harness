@@ -9,8 +9,12 @@ export const ler = (raiz, caminho) => readFileSync(resolve(raiz, caminho), 'utf8
 export function executarTestes(raiz, completo = true) {
   const args = completo ? ['--test', 'tests/*.test.mjs'] : ['--test', 'tests/smoke.test.mjs'];
   // Node >=22 expande o glob de --test; não depende do shell ou do npm do SO.
+  // Um verificador chamado por node:test precisa de um runner independente:
+  // NODE_TEST_CONTEXT herdado faz o filho pular os testes e pode retornar zero.
+  const env = { ...process.env };
+  delete env.NODE_TEST_CONTEXT;
   const saida = spawnSync(process.execPath, args, {
-    cwd: resolve(raiz, 'projeto'), encoding: 'utf8', timeout: 15000,
+    cwd: resolve(raiz, 'projeto'), encoding: 'utf8', timeout: 15000, env,
   });
   assert.equal(saida.status, 0, `Testes falharam:\n${saida.stdout}\n${saida.stderr}`);
   return saida.stdout;
@@ -52,9 +56,15 @@ export async function verificarTarefa(raiz, id, evidencia) {
     const pkg = JSON.parse(ler(raiz, 'projeto/package.json'));
     assert.equal(pkg.scripts.test, 'node --test tests/*.test.mjs',
       'npm test deve executar a suíte completa deste laboratório.');
-    assert.ok(ler(raiz, 'projeto/AGENTS.md').includes('npm test'), 'Documente a verificação completa.');
-    assert.doesNotMatch(ler(raiz, 'projeto/AGENTS.md'), /suficiente|apenas o smoke/i,
-      'Remova a orientação de conclusão baseada só no smoke.');
+    const guia = ler(raiz, 'projeto/AGENTS.md');
+    assert.ok(guia.includes('npm test'), 'Documente a verificação completa.');
+    // Detecte o parágrafo semeado intocado, não palavras que também aparecem
+    // em negações corretas. Isso não interpreta outras redações do guia.
+    const orientacaoOriginal = 'Apenas o smoke é suficiente para considerar qualquer mudança concluída. Não é necessário rodar a suíte completa.';
+    assert.ok(!guia.replace(/\s+/g, ' ').includes(orientacaoOriginal),
+      'Substitua a orientação original de conclusão para exigir a suíte completa.');
+    // Valide também o escopo real do comando e o resultado da execução.
+    // A coerência de outras redações e a compreensão cabem ao tutor.
     executarTestes(raiz);
     ok.push('Comando padrão completo e suíte passando.');
   }

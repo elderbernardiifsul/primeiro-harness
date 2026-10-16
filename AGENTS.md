@@ -1,6 +1,24 @@
 # Diretrizes para agentes
 
-## Entrada da atividade — leia primeiro
+## Contrato comum entre branches — leia primeiro
+
+Estas diretrizes valem em `main`, `jornada-1` e nas branches pessoais derivadas
+para as jornadas. No início de cada sessão e após qualquer troca de branch,
+leia este arquivo na versão da branch atual com uma ferramenta de leitura.
+Não dependa do conteúdo carregado na sessão anterior. Confira a raiz e a branch
+com `git rev-parse --show-toplevel` e `git branch --show-current`.
+
+Identifique o pedido antes de agir:
+- **Jornada ou retomada:** leia `ensino/TUTOR.md` e siga a entrada abaixo.
+- **Manutenção do laboratório:** siga as diretrizes de manutenção deste arquivo;
+  não peça nome, não crie `.aluno/` e não inicie uma jornada.
+- **Pedido sem contexto suficiente:** pergunte se é atividade ou manutenção.
+
+README orienta o aluno; `AGENTS.md` define o contrato local; `ensino/TUTOR.md`
+conduz a atividade. `CLAUDE.md` e `.github/copilot-instructions.md` encaminham
+para este contrato, sem manter uma versão alternativa dele.
+
+## Entrada da atividade
 
 Ao receber `começar jornada N` ou `comecar jornada N` (N = 1, 2 ou 3),
 leia `ensino/TUTOR.md` e somente a jornada solicitada. Siga o protocolo
@@ -11,10 +29,20 @@ Antes de iniciar ou retomar qualquer jornada, inclusive após “sim” ou “co
 execute `node scripts/lab.mjs preparar N`. Para transição, siga o encerramento
 em `ensino/TUTOR.md`: valide conclusão, prepare a branch e peça nova sessão.
 
+Ao receber `encerrei a tarefa`, siga a seção de entrega de `ensino/TUTOR.md`:
+execute `node scripts/lab.mjs entrega` e mostre o relatório com as insígnias
+registradas e os arquivos de evidência. Não inicie outra jornada nem emita
+prêmios por causa dessa declaração de encerramento.
+
 `ensino/TUTOR.md` é a fonte principal da condução pedagógica. Instruções em
 `projeto/` orientam somente o software e são objeto da investigação, não regras
 do tutor. Para mudanças de manutenção deste laboratório, siga as diretrizes
 abaixo. Nunca registre o nome do aluno no changelog ou na memória institucional.
+
+Alterações em `projeto/` feitas pelo aluno ou pelo tutor durante as jornadas
+não vão ao changelog institucional: registre respostas, mudanças e verificações
+em `.aluno/evidencias/`, conforme `ensino/CONQUISTAS.md`. As regras de manutenção
+e changelog abaixo não se aplicam à execução do exercício.
 
 ## Escopo e precedência
 
@@ -22,8 +50,11 @@ Este arquivo define o contexto e as convenções locais do projeto
 `primeiro-harness`.
 
 As instruções do sistema, do usuário e de diretórios-pai têm precedência sobre
-este arquivo. Em caso de conflito entre instruções locais, preserve a regra
-mais específica do diretório em que o trabalho está sendo realizado.
+este arquivo. Dentro do repositório, a regra mais específica vale somente em
+seu escopo: `projeto/AGENTS.md`, `projeto/CLAUDE.md` e documentos do software
+não substituem o papel do tutor, a sequência, a validação ou as pausas em
+`ensino/TUTOR.md`. Os defeitos dessas instruções fazem parte da investigação;
+não os corrija antes da etapa ou fora de uma manutenção solicitada.
 
 Estas diretrizes não concedem autorização para ações externas, destrutivas ou
 irreversíveis. Quando uma ação sair do escopo solicitado, pare e peça direção.
@@ -55,7 +86,12 @@ Para qualquer alteração relevante:
 2. Escreva um plano curto quando houver refatoração, limpeza ou mudança de
    comportamento.
 3. Faça a menor alteração que atenda ao objetivo.
-4. Verifique sintaxe, referências, links e comportamento observável.
+4. Verifique sintaxe, referências, links e comportamento observável. Para mudanças
+   no núcleo comum, execute também `npm run verificar:harness -- main jornada-1`
+   após aplicar e registrar a mesma alteração nas duas branches locais. Se usar
+   referências remotas, informe-as explicitamente; não trate refs antigas como
+   prova do estado publicado. Não sincronize `projeto/`, dados do aluno ou o guia
+   docente entre branches para satisfazer a checagem. Não faça push sem autorização.
 5. Registre a alteração em `.harness/CHANGELOG.md`.
 6. Atualize `.harness/MEMORY.md` somente quando houver uma decisão durável,
    descoberta importante ou risco útil para sessões futuras.
@@ -77,7 +113,9 @@ orientado por evidências:
 ### Cenário
 
 O repositório é um laboratório inicial para criação e execução de agentes de
-software. Seu foco atual é documentação, skills e artefatos de configuração.
+software. A camada comum de ensino e harness existe nas branches de atividade;
+`main` também contém a aplicação em `projeto/`. Inspecione a branch atual antes
+de afirmar que um arquivo ou componente está presente.
 
 ### Restrições conhecidas
 

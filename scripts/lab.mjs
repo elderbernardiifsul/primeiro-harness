@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync, renameSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync, renameSync, readdirSync } from 'node:fs';
 import { resolve, dirname, relative, isAbsolute } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { randomUUID, createHash } from 'node:crypto';
@@ -84,7 +84,7 @@ export function laboratorio(base = raiz) {
       await verificarTarefa(base, id, e);
     }
     dados.conquistas.MASTER ??= { selo: `PH-MASTER-${randomUUID().slice(0, 8).toUpperCase()}`, emitidaEm: new Date().toISOString() };
-    dados.marco = 'Atividade concluída; entregar prints e preservar evidências.';
+    dados.marco = 'Atividade concluída; entregar print ou fotografia do relatório e preservar evidências.';
     salvar(dados);
     const observacao = evidencia('07').e.observacao;
     const mensagem = `\n${dados.nome}, uma descoberta do seu percurso: ${observacao}\n`;
@@ -96,6 +96,57 @@ export function laboratorio(base = raiz) {
     const conteudo = ids.length ? ids.map(id => renderizar(dados, id)).join('\n') : 'Nenhuma conquista emitida. Retome a primeira tarefa.\n';
     texto(resolve(pasta, 'insignias', 'PAINEL.txt'), conteudo);
     return conteudo;
+  }
+  function entrega() {
+    const dados = carregar();
+    const emitidas = conquistas.filter(([id]) => dados.conquistas[id]);
+    const pendencias = [];
+    const faltantes = conquistas.filter(([id]) => !dados.conquistas[id]).map(([id]) => id);
+    if (faltantes.length) pendencias.push(`Conquistas pendentes: ${faltantes.join(', ')}.`);
+    if (!dados.conquistas.MASTER) pendencias.push('MASTER não emitido.');
+    const jornadasPendentes = [1, 2, 3].filter(n => !dados.jornadasConcluidas?.[n]);
+    if (jornadasPendentes.length) pendencias.push(`Jornadas sem encerramento: ${jornadasPendentes.join(', ')}.`);
+    const diretorio = resolve(pasta, 'evidencias');
+    const arquivos = existsSync(diretorio)
+      ? readdirSync(diretorio, { withFileTypes: true }).filter(e => e.isFile()).map(e => e.name).sort()
+      : [];
+    const estados = new Map();
+    for (const [id] of emitidas) {
+      const arquivo = `${id}.json`;
+      if (!arquivos.includes(arquivo)) {
+        pendencias.push(`Evidência ${arquivo} ausente ou não é arquivo regular.`);
+        continue;
+      }
+      try {
+        const { hash } = evidencia(id, { exigirArquivos: false });
+        assert.equal(hash, dados.conquistas[id].evidenciaSha256, 'alterada após a emissão');
+        estados.set(arquivo, 'hash confere');
+      } catch (erro) {
+        estados.set(arquivo, 'PENDÊNCIA');
+        pendencias.push(`Evidência ${arquivo}: ${erro.message.split('\n')[0]}.`);
+      }
+    }
+    const linhas = [
+      'PRIMEIRO HARNESS — RELATÓRIO DE ENTREGA',
+      `Aluno: ${dados.nome}`,
+      `Conquistas: ${emitidas.length}/${conquistas.length} | MASTER: ${dados.conquistas.MASTER ? 'emitido' : 'não emitido'}`,
+      `Situação: ${pendencias.length ? 'PARCIAL — há pendências.' : 'COMPLETO — encerramentos e evidências conferidos.'}`,
+      '', 'INSÍGNIAS CONQUISTADAS',
+      ...emitidas.map(([id, titulo]) => `${id} ${titulo} | ${dados.conquistas[id].selo}`),
+      ...(dados.conquistas.MASTER ? [`MASTER ${master.titulo} | ${dados.conquistas.MASTER.selo}`] : []),
+      ...(emitidas.length || dados.conquistas.MASTER ? [] : ['Nenhuma insígnia emitida.']),
+      '', `ARQUIVOS EM .aluno/evidencias/ (${arquivos.length})`,
+      ...arquivos.map(nome => `${nome} [${estados.get(nome) ?? 'sem conquista associada'}]`),
+      ...(arquivos.length ? [] : ['Nenhuma evidência encontrada.']),
+      ...(pendencias.length ? ['', 'PENDÊNCIAS', ...pendencias] : []),
+      '', 'Entrega: envie um print ou fotografia desta tela na atividade do Classroom.',
+      'Preserve os JSON de evidência para eventual revisão do professor.',
+      'Cópia deste relatório: .aluno/ENTREGA.txt',
+      `Gerado em: ${new Date().toISOString()}`, '',
+    ];
+    const relatorio = linhas.join('\n');
+    texto(resolve(pasta, 'ENTREGA.txt'), relatorio);
+    return relatorio;
   }
   function marco(s) {
     assert.ok(typeof s === 'string' && s.trim().length > 0, 'Informe o próximo ponto.');
@@ -145,13 +196,13 @@ export function laboratorio(base = raiz) {
     dados.jornadasConcluidas[n] = { concluidaEm: new Date().toISOString() };
     dados.marco = n < 3
       ? `Jornada ${n} concluída. Preparar branch e abrir nova sessão para começar jornada ${n + 1}.`
-      : 'Atividade concluída; entregar prints e preservar evidências.';
+      : 'Atividade concluída; entregar print ou fotografia do relatório e preservar evidências.';
     salvar(dados);
     return n < 3
       ? `Jornada ${n} concluída e verificada. Sugira abrir uma nova sessão para a jornada ${n + 1}. Se o aluno aceitar, execute preparar ${n + 1} --trocar-branch, confirme o resultado e pare: não inicie o conteúdo na sessão atual.`
-      : 'Jornada 3 concluída e verificada. Mostre o painel e oriente a entrega.';
+      : 'Jornada 3 concluída e verificada. Execute entrega, mostre o relatório e peça um print ou fotografia dessa tela.';
   }
-  return { iniciar, carregar, premiar, emitirMaster, painel, marco, prepararJornada, encerrarJornada };
+  return { iniciar, carregar, premiar, emitirMaster, painel, entrega, marco, prepararJornada, encerrarJornada };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
@@ -166,12 +217,13 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
       case 'premiar': saida = await lab.premiar(args[0]); break;
       case 'master': saida = await lab.emitirMaster(); break;
       case 'painel': saida = lab.painel(); break;
+      case 'entrega': saida = lab.entrega(); break;
       case 'preparar':
         assert.ok(args.length <= 2 && (!args[1] || args[1] === '--trocar-branch'), 'Use preparar N [--trocar-branch].');
         saida = JSON.stringify(lab.prepararJornada(args[0], { trocarBranch: args[1] === '--trocar-branch' }), null, 2);
         break;
       case 'encerrar': saida = await lab.encerrarJornada(args[0]); break;
-      default: throw new Error('Comandos: iniciar NOME | status | marco TEXTO | premiar NN | master | painel | preparar N [--trocar-branch] | encerrar N');
+      default: throw new Error('Comandos: iniciar NOME | status | marco TEXTO | premiar NN | master | painel | entrega | preparar N [--trocar-branch] | encerrar N');
     }
     console.log(saida);
   } catch (erro) {
