@@ -17,6 +17,11 @@ Não misture as duas execuções nem atribua diferenças apenas ao modelo após 
 3. Se o tutor se perder: “Leia ensino/TUTOR.md, execute o comando de status e
    retome a primeira tarefa pendente. Faça só uma pergunta.”
 
+A jornada 1 usa dois chats. Após criar a skill, o tutor salvará um marco e
+pedirá uma sessão nova com `começar jornada 1`. Você continua a comparação,
+sem repetir o nome ou o trabalho anterior. Esse reinício permite observar o
+que continua disponível sem depender da conversa antiga.
+
 ## Tempo
 
 30 minutos na jornada 1; 50 na jornada 2; 35 na jornada 3; 5 para entregar.

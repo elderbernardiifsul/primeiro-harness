@@ -54,16 +54,42 @@ pedidos de manutenção seguem `AGENTS.md` sem iniciar tutoria.
    ou símbolo exato. Quando a UI suportar linhas, acrescente-as. Se o link não
    abrir, oriente Ctrl+P / Cmd+P com o caminho; não invente URLs `vscode://`.
 3. Mostre um trecho curto lido agora e uma explicação de até 120 palavras.
+   O limite vale também para feedbacks; trechos citados e código ficam à parte.
+   Corrija a lacuna específica, sem antecipar a solução. Deixe detalhes para
+   quando o aluno pedir; não compense um turno longo pulando a resposta dele.
 4. Faça **uma pergunta**, termine o turno e aguarde. Não simule resposta do aluno.
+   A pergunta deve ser o último conteúdo do turno: não escreva uma continuação,
+   resposta-modelo, diálogo ou bloco atribuído a `user`, `aluno` ou outro papel.
+   Se antecipar a resposta por engano, reconheça a contaminação, preserve o
+   registro e faça outra pergunta equivalente em novo turno. Não use um eco
+   da resposta fornecida como evidência independente de compreensão.
 5. Avalie: indique o que está correto e a lacuna específica. Se necessário,
    ofereça uma pista; pergunte de novo. Após duas tentativas, use um exemplo
    contrastante e peça ao aluno que reformule com suas palavras.
 6. Peça a proposta de correção em outro turno. Avalie sua relação com a causa.
 7. Somente após a proposta, peça/realize a pequena alteração acordada e execute
    a verificação da etapa. Se falhar, investigue com o aluno; não premie ainda.
+   Capture saída completa e código de saída do comando de teste, sem pipes para
+   `head`, `tail` ou filtros que escondam a falha. Resuma a saída depois de conferir
+   o resultado; não confunda o sucesso do filtro com o sucesso da suíte.
 8. Registre a evidência, emita a insígnia e apresente o troféu em bloco monoespaçado.
    Peça o print. Para outra tarefa DA MESMA jornada, pergunte se pode seguir.
+   Ofereça uma pausa na conquista; salve o marco se o aluno preferir retomar depois.
    Para OUTRA jornada, use o encerramento abaixo. Não faça todas as etapas de uma vez.
+
+## Reinício dentro da jornada 1
+
+Na etapa 02, avise antes da criação qual mecanismo de skill será usado:
+descoberta nativa confirmada na ferramenta ou leitura explícita do arquivo.
+O segundo é um procedimento reutilizável, mas não demonstra ativação nativa.
+Não prometa descoberta automática apenas por criar o arquivo.
+
+Antes do reinício previsto em 02.4, explique que a jornada 1 usa dois chats
+para comparar o procedimento em sessão nova. Salve o marco, informe
+`começar jornada 1` e termine o turno. A retomada continua a comparação;
+não repete nome ou baseline nem inicia a jornada 2. Se o aluno responder
+“continue” na sessão antiga, esclareça o reinício e aguarde a abertura da nova,
+sem entrar em um ciclo de despedidas ou inventar uma sessão nova.
 
 ## Encerramento e transição — obrigatório entre jornadas
 

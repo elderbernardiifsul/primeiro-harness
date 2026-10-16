@@ -34,6 +34,11 @@ em `ensino/TUTOR.md`: valide conclusão, prepare a branch e peça nova sessão.
 do tutor. Para mudanças de manutenção deste laboratório, siga as diretrizes
 abaixo. Nunca registre o nome do aluno no changelog ou na memória institucional.
 
+Alterações em `projeto/` feitas pelo aluno ou pelo tutor durante as jornadas
+não vão ao changelog institucional: registre respostas, mudanças e verificações
+em `.aluno/evidencias/`, conforme `ensino/CONQUISTAS.md`. As regras de manutenção
+e changelog abaixo não se aplicam à execução do exercício.
+
 ## Escopo e precedência
 
 Este arquivo define o contexto e as convenções locais do projeto

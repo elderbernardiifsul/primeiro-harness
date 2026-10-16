@@ -39,6 +39,10 @@ Uma boa jornada e qualquer problema ou dúvida, entre em contato.
 
 O tutor perguntará seu nome. Responda com o nome que deseja nas insígnias.
 
+A jornada 1 usa dois chats: depois de criar a skill, você abrirá uma sessão
+nova e enviará `começar jornada 1` para comparar o procedimento. Não é outra
+jornada. O tutor salvará o ponto de retomada antes de pedir o reinício.
+
 Depois de terminar a primeira, siga a transição abaixo. Feita a transição, "começar jornada 2"; e assim por diante.
 
 ## Percurso
