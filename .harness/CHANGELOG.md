@@ -19,7 +19,15 @@ Data: 2026-10-16
 Prompt: Manter referência docente acessível ao tutor, com pistas, soluções e validação do laboratório completo.
 Resultado: Branch professor acrescenta guia de publicação/aplicação, pistas graduais, soluções, modelos da skill/código/testes e validador em clone temporário. A matriz distingue verificações automatizadas de piloto real de tutoria.
 Arquivos: professor/, scripts/verificar-repo.mjs, .harness/CHANGELOG.md.
-Verificação: npm test, checagem de links e sintaxe; checador ajustado para não interpretar exemplos cercados por blocos de código como links reais. Validador completo exige a branch docente já commitada para testar consulta remota em clone; seu resultado será registrado após execução.
+Verificação: npm test, checagem de links e sintaxe aprovados; checador ajustado para ignorar exemplos em código. Validador docente completo aprovado após commit e novamente após integração dos reforços: clone/transição reais, guia via origin/professor, seis grupos de cenários e master. Nenhum dado real de aluno foi criado.
+Autor: OpenCode
+
+======================
+Data: 2026-10-16
+Prompt: Verificar a construção completa e reforçar evidências para a premiação.
+Resultado: Clone temporário percorreu J1, transição, referências docentes, recuperação, funcionalidade, regressão e master; identidade e skill preservadas. Aceitação confere os cinco campos de checkout e execução do CLI em JSON; checador de links ignora exemplos em código. Relatório separa testes reais de piloto pedagógico pendente.
+Arquivos: scripts/verificacoes.mjs, scripts/verificar-repo.mjs, ensino/CONQUISTAS.md, ensino/VALIDACAO.md, ensino/jornadas/03.md, README.md, .harness/CHANGELOG.md.
+Verificação: Validador docente completo e reforços aprovados em clone isolado; npm test aprovado; npm run verificar aprovado (54 arquivos na branch professor); git diff --check aprovado. Node.js v26.11.1. Sem execução real das quatro integrações VS Code e sem piloto de duração.
 Autor: OpenCode
 
 ======================

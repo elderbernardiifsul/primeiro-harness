@@ -67,14 +67,28 @@ export async function verificarTarefa(raiz, id, evidencia) {
       const itens = [{ nome: 'Item', preco, quantidade: 1 }];
       const copia = structuredClone(itens);
       const resultado = api.checkout(itens);
-      assert.equal(resultado.frete, esperadoFrete, `Frete incorreto para preço ${preco}.`);
-      assert.equal(resultado.total, esperadoTotal, `Total incorreto para preço ${preco}.`);
+      const produtos = Math.round(preco * 90) / 100;
+      assert.deepEqual(resultado, {
+        subtotal: preco,
+        desconto: Math.round((preco - produtos) * 100) / 100,
+        totalProdutos: produtos,
+        frete: esperadoFrete,
+        total: esperadoTotal,
+      }, `Contrato de checkout incorreto para preço ${preco}.`);
       assert.deepEqual(itens, copia, 'Não modifique as entradas.');
     }
-    assert.equal(api.checkout([]).total, 0, 'Carrinho vazio não paga frete.');
-    assert.equal(api.checkout([]).frete, 0);
+    assert.deepEqual(api.checkout([]), { subtotal: 0, desconto: 0, totalProdutos: 0, frete: 0, total: 0 },
+      'Carrinho vazio deve retornar todos os campos zero.');
     assert.throws(() => api.checkout([{ nome: 'Inválido', preco: 10, quantidade: 0 }]));
     assert.ok(existsSync(resolve(raiz, 'projeto/tests/frete.test.mjs')), 'Crie os testes de frete.');
+    const cli = spawnSync(process.execPath, ['src/cli.mjs'], {
+      cwd: resolve(raiz, 'projeto'), encoding: 'utf8', timeout: 15000,
+    });
+    assert.equal(cli.status, 0, 'O CLI deve executar sem erro.');
+    const demonstracao = JSON.parse(cli.stdout);
+    for (const campo of ['subtotal', 'desconto', 'totalProdutos', 'frete', 'total']) {
+      assert.ok(Number.isFinite(demonstracao[campo]), `O CLI deve demonstrar o campo ${campo} do checkout em JSON.`);
+    }
     ok.push('Aceitação independente do frete: limites após desconto, vazio e entrada inválida.');
     if (Number(id) >= 7) {
       const itens = [{ nome: 'A', preco: 0.1, quantidade: 1 }, { nome: 'B', preco: 0.2, quantidade: 1 }];
