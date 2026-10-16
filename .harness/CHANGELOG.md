@@ -8,6 +8,14 @@ Autor: Codex
 
 ======================
 Data: 2026-10-16
+Prompt: Criar e publicar o repositório no GitHub, com visibilidade pública confirmada.
+Resultado: Criado elderbernardiifsul/primeiro-harness; configurado origin e atualizado o roteiro com a URL definitiva. Publicação inclui main, jornada-1, professor e base-original.
+Arquivos: README.md, .harness/CHANGELOG.md; configuração local do remoto Git.
+Verificação: Conta autenticada e estado Git inspecionados; referências remotas e visibilidade conferidas após o envio.
+Autor: OpenCode
+
+======================
+Data: 2026-10-16
 Prompt: Construir laboratório guiado de duas horas, com jornadas, compatibilidade entre agentes, memória local e insígnias ASCII personalizadas.
 Resultado: Preservada base-original em Git independente; adicionados tutor socrático, biblioteca sob demanda, jornada 1, entradas portáveis, roteiro de clonagem/transição e emissor de troféus com evidências. Nome não é registrado em arquivos institucionais. Diretório ignorado no Git pai por autorização do professor.
 Arquivos: AGENTS.md, CLAUDE.md, .github/copilot-instructions.md, .gitignore, package.json, README.md, ensino/, scripts/, tests/, docs/INDEX.md, .harness/MEMORY.md, .harness/CHANGELOG.md; ../.gitignore.
